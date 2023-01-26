@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:7.0.100-bullseye-slim-amd64 as build-env
+FROM mcr.microsoft.com/dotnet/sdk:7.0.102-bullseye-slim-amd64 as build-env
 WORKDIR /app
 
 # Copy csproj and restore as distinct layers
