@@ -169,8 +169,8 @@ namespace GSoft.CertificateTool
                 Console.WriteLine($"Installing certificate from '{certificatePath}' to '{storeName}' certificate store (location: {storeLocation})...");
 
                 using var publicKey =  string.IsNullOrEmpty(password)
-                    ? new X509Certificate2(certificatePath)
-                    : new X509Certificate2(
+                    ? X509CertificateLoader.LoadPkcs12FromFile(certificatePath, "")
+                    : X509CertificateLoader.LoadPkcs12FromFile(
                         certificatePath,
                         password,
                         X509KeyStorageFlags);
@@ -198,7 +198,7 @@ namespace GSoft.CertificateTool
 
                     keyPair = publicKey.CopyWithPrivateKey(rsa);
                 }
-                var cert = keyPair == null ? publicKey : new X509Certificate2(keyPair.Export(X509ContentType.Pfx, password), password, X509KeyStorageFlags);
+                var cert = keyPair == null ? publicKey : X509CertificateLoader.LoadPkcs12(keyPair.Export(X509ContentType.Pfx, password), password, X509KeyStorageFlags);
 
                 AddToStore(cert, storeName, storeLocation);
             }
@@ -212,8 +212,8 @@ namespace GSoft.CertificateTool
                 Console.WriteLine($"Installing certificate from '{path}' to '{storeName}' certificate store (location: {storeLocation})...");
 
                 cert = string.IsNullOrEmpty(password)
-                    ? new X509Certificate2(path)
-                    : new X509Certificate2(
+                    ? X509CertificateLoader.LoadPkcs12FromFile(path, "")
+                    : X509CertificateLoader.LoadPkcs12FromFile(
                         path,
                         password,
                         X509KeyStorageFlags);
@@ -236,8 +236,8 @@ namespace GSoft.CertificateTool
 
                 var bytes = Convert.FromBase64String(base64);
                 cert = string.IsNullOrEmpty(password)
-                    ? new X509Certificate2(bytes)
-                    : new X509Certificate2(
+                    ? X509CertificateLoader.LoadPkcs12(bytes, "")
+                    : X509CertificateLoader.LoadPkcs12(
                         bytes,
                         password,
                         X509KeyStorageFlags);
