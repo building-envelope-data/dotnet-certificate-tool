@@ -3,8 +3,8 @@
         <OutputType>Exe</OutputType>
         <Description>CLI tool that installs a certificate to the specified store (defaults to My).</Description>
         <RepositoryUrl>https://github.com/gsoft-inc/dotnet-certificate-tool</RepositoryUrl>
-        <TargetFramework>net9.0</TargetFramework>
-        <LangVersion>13.0</LangVersion>
+        <TargetFramework>net10.0</TargetFramework>
+        <LangVersion>14.0</LangVersion>
         <Version>3.2.0</Version>
     </PropertyGroup>
 
